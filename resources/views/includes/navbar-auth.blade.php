@@ -12,9 +12,6 @@
             <li class="nav-item active">
               <a href="{{ route('home') }}" class="nav-link">Home</a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">Hi Selamat datang</a>
-            </li>
           </ul>
         </div>
       </div>
