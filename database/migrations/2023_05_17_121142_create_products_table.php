@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('users_id');
             $table->integer('price');
             $table->longText('description');
+            $table->unsignedInteger('discount_percentage');
 
             $table->softDeletes();
             $table->timestamps();

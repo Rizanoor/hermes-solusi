@@ -139,6 +139,4 @@
      }
     }
    </script>
-   <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="a53888fa-dc93-4d44-9c2d-09c00ecf8835";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-
 @endpush
