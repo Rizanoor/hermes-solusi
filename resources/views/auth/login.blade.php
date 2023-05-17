@@ -1,7 +1,68 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<div class="container">
+<div class="page-content page-auth">
+    <div class="section-store-auth" data-aos="fade-up">
+      <div class="container">
+        <div class="row align-items-center row-login">
+          <div class="col-lg-6 text-center">
+            <img src="/images/login-placeholder.png" alt="" class="w-50 mb-4 mb-lg-none">
+          </div>
+          <div class="col-lg-5">
+            <h2>Belanja Kebutuhan Utama <br>
+                Menjadi Lebih Mudah</h2>
+            <form method="POST" action="{{ route('login') }}" class="mt-3">
+            @csrf
+              <div class="form-group">
+                <label>Email Address</label>
+                  <input id="email" type="email" class="form-control w-75
+                    @error('email') is-invalid @enderror"
+                    name="email" value="{{ old('email') }}"
+                    required autocomplete="email" autofocus>
+
+                 @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                 @enderror
+              </div>
+
+              <div class="form-group">
+                <label>Password</label>
+                  <input id="password" type="password" class="form-control w-75
+                            @error('password') is-invalid @enderror"
+                            name="password" required autocomplete="current-password">
+                  <input class="mt-2" type="checkbox" onclick="myFunction()"> Lihat Password
+
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+              </div>
+
+              <button type="submit" href="{{ route('home') }}"
+                    class="btn btn-success btn-block w-75 mt-4">
+                Sign In to My Account
+              </button>
+
+              <a href="{{ route('register') }}"
+                    class="btn btn-signup btn-block w-75 mt-2">
+                Sign Up
+              </a>
+
+              <a href="{{ route('password.email') }}" target="blank" class="btn btn-signup btn-block w-75 mt-2">
+                Forgot password
+              </a>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container" style="display: none">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -12,7 +73,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -71,3 +132,18 @@
     </div>
 </div>
 @endsection
+
+@push('addon-script')
+<script>
+    function myFunction() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+     }
+    }
+   </script>
+   <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="a53888fa-dc93-4d44-9c2d-09c00ecf8835";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
+@endpush
