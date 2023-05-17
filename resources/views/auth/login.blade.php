@@ -50,11 +50,6 @@
                     class="btn btn-signup btn-block w-75 mt-2">
                 Sign Up
               </a>
-
-              <a href="{{ route('password.email') }}" target="blank" class="btn btn-signup btn-block w-75 mt-2">
-                Forgot password
-              </a>
-
             </form>
           </div>
         </div>
