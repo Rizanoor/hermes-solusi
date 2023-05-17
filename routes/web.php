@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +18,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::group(['middleware' => ['auth']], function () {
+    // Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])
+    //   ->name('dashboard');
+
+});
+
 
 Route::prefix('admin')
-  ->namespace('Admin')
-  ->middleware(['auth', 'admin'])
+//   ->namespace('Admin')
+//   ->middleware(['auth', 'admin'])
   ->group(function () {
     Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])
       ->name('admin-dashboard');
-    Route::resource('category', 'CategoryController');
     Route::resource('user', 'UserController');
     Route::resource('product', 'ProductController');
     Route::resource('product-gallery', 'ProductGalleryController');

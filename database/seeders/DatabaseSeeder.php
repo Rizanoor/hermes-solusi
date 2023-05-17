@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'admin@gmail.com',
                 'email_verified_at' => date('Y-m-d H:i:s', time()),
                 'password' => bcrypt('password'),
-                'roles' => 'Admin',
+                'roles' => 'ADMIN',
             ]
         );
     }
