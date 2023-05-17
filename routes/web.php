@@ -15,4 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+Route::prefix('admin')
+  ->namespace('Admin')
+  ->middleware(['auth', 'admin'])
+  ->group(function () {
+    Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])
+      ->name('admin-dashboard');
+    Route::resource('category', 'CategoryController');
+    Route::resource('user', 'UserController');
+    Route::resource('product', 'ProductController');
+    Route::resource('product-gallery', 'ProductGalleryController');
+    Route::resource('transaction', 'TransactionController');
+  });
 Auth::routes();
