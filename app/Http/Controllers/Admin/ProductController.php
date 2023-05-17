@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Product;
-use App\Http\Requests\Admin\ProductRequest;
+use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
 
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\Admin\ProductRequest;
 
 
 class ProductController extends Controller
@@ -64,7 +65,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+
+        return view('pages.admin.product.create', [
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -73,9 +78,15 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        $data = $request->all();
+
+        $data['slug'] = Str::slug($request->name);
+
+        Product::create($data);
+
+        return redirect()->route('product.index');
     }
 
     /**
@@ -97,7 +108,13 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Product::findOrFail($id);
+        $users = User::all();
+
+        return view('pages.admin.product.edit', [
+            'item' => $item,
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -107,9 +124,17 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $item = Product::findOrFail($id);
+
+        $data['slug'] = Str::slug($request->name);
+
+        $item->update($data);
+
+        return redirect()->route('product.index');
     }
 
     /**
@@ -120,6 +145,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Product::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('product.index');
     }
 }

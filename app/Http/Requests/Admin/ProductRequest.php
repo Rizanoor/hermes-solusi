@@ -26,10 +26,9 @@ class ProductRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'users_id' => 'required|exists:users,id',
-            'categories_id' => 'required|exists:categories,id',
             'price' => 'required|integer',
             'description' => 'required',
-            'discount_percentage' => 'min:1|max:100|numeric',
+            'discount_percentage' => 'nullable|min:1|max:100|numeric',
         ];
     }
 }

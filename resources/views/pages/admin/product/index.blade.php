@@ -32,7 +32,7 @@
                                         <th>ID</th>
                                         <th>Nama</th>
                                         <th>Pemilik</th>
-                                        <th>Kategori</th>
+                                        <th>Diskon</th>
                                         <th>Harga</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -64,7 +64,7 @@
                 { data: 'id', name: 'id' },
                 { data: 'name', name: 'name' },
                 { data: 'user.name', name: 'user.name' },
-                { data: 'category.name', name: 'category.name' },
+                { data: 'discount_percentage', name: 'discount_percentage' },
                 { data: 'price', name: 'price' },
                 {
                     data: 'action',
