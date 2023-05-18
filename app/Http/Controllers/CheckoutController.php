@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cart;
+use App\Models\Transaction;
+use App\Models\TransactionDetail;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
@@ -11,74 +15,44 @@ class CheckoutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function process(Request $request)
     {
-        //
-    }
+        // Save users data
+        $user = Auth::user();
+        $user->update($request->except('total_price'));
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        // Proses checkout
+        $code = 'STORE-' . mt_rand(000000, 999999);
+        $carts = Cart::with(['product', 'user'])
+            ->where('users_id', Auth::user()->id)
+            ->get();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        // // Transaction create
+        $transaction = Transaction::create([
+            'users_id' => Auth::user()->id,
+            'total_price' => (int) $request->total_price + (($request->total_price * 10) / 100),
+            'transaction_status' => 'PENDING',
+            'code' => $code
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        foreach ($carts as $cart) {
+            $trx = 'TRX-' . mt_rand(0000,9999);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+            TransactionDetail::create([
+                'transactions_id' => $transaction->id,
+                'products_id' => $cart->product->id,
+                'price' => $cart->product->price,
+                'resi' => '',
+                'code' => $trx
+            ]);
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        // Delete cart data
+        Cart::with(['product','user'])
+          ->where('users_id', Auth::user()->id)
+          ->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('pages.success');
+
     }
 }

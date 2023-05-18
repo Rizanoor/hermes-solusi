@@ -13,7 +13,6 @@ class TransactionDetail extends Model
         'transactions_id',
         'products_id',
         'price',
-        'resi',
         'code'
     ];
 

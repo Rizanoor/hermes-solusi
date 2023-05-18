@@ -13,6 +13,8 @@ class Transaction extends Model
         'users_id',
         'total_price',
         'transaction_status',
+        'code'
+
     ];
 
     protected $hidden = [];

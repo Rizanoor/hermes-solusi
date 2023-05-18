@@ -136,7 +136,7 @@
             <div class="product-subtitle">Total</div>
           </div>
           <div class="col-4 col-md-4">
-            <button type="submit" targrt="blank" class="btn btn-success mt-4 px-4 btn-block">
+            <button type="submit" target="blank" class="btn btn-success mt-4 px-4 btn-block">
             Checkout Now
             </button>
           </div>
