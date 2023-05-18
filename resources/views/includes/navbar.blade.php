@@ -34,8 +34,7 @@
                 Hi, {{ Auth::user()->name }}
               </a>
               <div class="dropdown-menu">
-                <a href="/" class="dropdown-item">Dashboard</a>
-                <a href="/" class="dropdown-item">My Account</a>
+                <a href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a>
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('logout') }}" class="dropdown-item"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -47,7 +46,7 @@
               </div>
             </li>
             <li class="nav-item">
-              <a href="/" class="nav-link d-inline-block mt-2">
+              <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
                 @php $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count(); @endphp
                 @if ($carts > 0)
                   <img src="/images/icon-cart-filled.svg" alt="" />
@@ -63,7 +62,7 @@
           <!-- Mobile Menu -->
           <ul class="navbar-nav d-block d-lg-none">
             <li class="nav-item">
-              <a href="/" class="nav-link d-inline-block">
+              <a href="{{ route('cart') }}" class="nav-link d-inline-block">
                 Cart
               </a>
             </li>
@@ -73,8 +72,7 @@
                   Hi, {{ Auth::user()->name }}
                 </a>
                 <div class="dropdown-menu shadow-sm w-50">
-                  <a href="/" class="dropdown-item">Dashboard</a>
-                  <a href="/" class="dropdown-item">My Account</a>
+                  <a href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a>
                   <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" class="dropdown-item"
                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
