@@ -21,8 +21,13 @@ Route::post('/details/{id}', [App\Http\Controllers\DetailController::class, 'add
 
 
 Route::group(['middleware' => ['auth']], function () {
-    // Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])
-    //   ->name('dashboard');
+    Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
+    Route::delete('/cart/{id}', [App\Http\Controllers\CartController::class, 'delete'])->name('cart-delete');
+
+    Route::post('/checkout', [App\Http\Controllers\CheckoutController::class, 'process'])->name('checkout');
+
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])
+      ->name('dashboard');
 
 });
 

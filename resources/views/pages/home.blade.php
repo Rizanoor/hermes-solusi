@@ -29,9 +29,7 @@
                           </div>
                         </div>
                           <div class="products-text">{{ $product->name }}</div>
-                          <div class="products-price">Rp.{{ number_format($product->price) }}
-                            <span class="badge badge-pill badge-danger text-white">Diskon. {{ number_format($product->price * $product->discount_percentage / 100) }} </span>
-                          </div>
+                          <div class="products-price">Rp.{{ number_format($product->price) }}  </div>
                         </a>
                       </div>
                     @empty
