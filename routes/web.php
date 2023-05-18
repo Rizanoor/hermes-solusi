@@ -16,6 +16,9 @@ use App\Http\Controllers\Admin\ProductController;
 */
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/details/{id}', [App\Http\Controllers\DetailController::class, 'index'])->name('detail');
+Route::post('/details/{id}', [App\Http\Controllers\DetailController::class, 'add'])->name('detail-add');
+
 
 Route::group(['middleware' => ['auth']], function () {
     // Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])

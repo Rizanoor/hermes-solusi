@@ -14,39 +14,30 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-                        <a href="/details.html" class="component-products d-block">
-                            <div class="products-thumbnail">
-                                <div class="products-image"
-                                    style="background-image: url('/images/products-apple-watch.jpg')"></div>
-                            </div>
-                            <div class="products-text">Kue Kacang</div>
-                            <div class="products-price">55 K</div>
+                    @php $incrementProduct = 0 @endphp
+                    @forelse ($products as $product)
+                      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="{{ $incrementProduct+= 100 }}">
+                        <a href="{{ route ('detail', $product->slug) }}" class="component-products d-block">
+                        <div class="products-thumbnail">
+                          <div class="products-image"
+                            style="
+                                  @if($product->galleries->count())
+                                    background-image: url('{{ Storage::url($product->galleries->first()->photos) }}')
+                                  @else
+                                    background-color: #eee
+                                  @endif">
+                          </div>
+                        </div>
+                          <div class="products-text">{{ $product->name }}</div>
+                          <div class="products-price">Rp.{{ number_format($product->price) }}</div>
                         </a>
-                    </div>
-
-                    <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-                        <a href="/details.html" class="component-products d-block">
-                            <div class="products-thumbnail">
-                                <div class="products-image"
-                                    style="background-image: url('/images/products-monkey-toys.jpg')"></div>
-                            </div>
-                            <div class="products-text">Kue Kacang</div>
-                            <div class="products-price">55 K</div>
-                        </a>
-                    </div>
-
-                    <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-                        <a href="/details.html" class="component-products d-block">
-                            <div class="products-thumbnail">
-                                <div class="products-image"
-                                    style="background-image: url('/images/products-mavic-kawe.jpg')"></div>
-                            </div>
-                            <div class="products-text">Kue Kacang</div>
-                            <div class="products-price">55 K</div>
-                        </a>
-                    </div>
-                </div>
+                      </div>
+                    @empty
+                      <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
+                        Product Not Found
+                      </div>
+                    @endforelse
+                  </div>
             </div>
         </section>
     </div>

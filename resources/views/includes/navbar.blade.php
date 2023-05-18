@@ -48,14 +48,14 @@
             </li>
             <li class="nav-item">
               <a href="/" class="nav-link d-inline-block mt-2">
-                {{-- @php $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count(); @endphp
+                @php $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count(); @endphp
                 @if ($carts > 0)
                   <img src="/images/icon-cart-filled.svg" alt="" />
                   <div class="card-badge">{{ $carts }}</div>
                   @else
 
                   <img src="/images/icon-cart-empty.svg" alt="" />
-                @endif --}}
+                @endif
               </a>
             </li>
           </ul>
