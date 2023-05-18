@@ -28,7 +28,7 @@ class ProductRequest extends FormRequest
             'users_id' => 'required|exists:users,id',
             'price' => 'required|integer',
             'description' => 'required',
-            'discount_percentage' => 'nullable|min:1|max:100|numeric',
+            'discount_percentage' => 'required|min:1|max:100|integer',
         ];
     }
 }

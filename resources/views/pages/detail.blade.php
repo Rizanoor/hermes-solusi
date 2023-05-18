@@ -53,9 +53,9 @@
             <div class="container"><div class="row">
               <div class="col-lg-8">
                 <h1>{{ $product->name }}</h1>
-                <div class="owner">Toko {{ $product->user->store_name }}</div>
-                <div class="price">Rp.{{ number_format($product->price) }}</div>
-              </div>
+                <div class="price">Rp.{{ number_format($product->price) }}
+                    <span class="badge badge-pill badge-danger text-white">Diskon. {{ number_format($product->price * $product->discount_percentage / 100) }} </span>
+                  </div>              </div>
               <div class="col-lg-2" data-aos="zoom-in">
                 @auth
                   <form action="{{ route('detail-add', $product->id) }}" method="POST" enctype="multipart/form-data">
