@@ -12,7 +12,7 @@ class Product extends Model
 
     protected $fillable =
     [
-        'name', 'users_id', 'price', 'description', 'discount_percentage', 'slug'
+        'name', 'users_id', 'price', 'description', 'slug'
     ];
 
     public function galleries()

@@ -52,10 +52,6 @@
                                       <input type="number" name="price" class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                      <label>Diskon Persenan</label>
-                                      <input type="number" name="discount_percentage" class="form-control" min="1" max="100">
-                                    </div>
-                                    <div class="form-group">
                                       <label>Deskripsi Product</label>
                                       <textarea name="description" id="editor"></textarea>
                                     </div>
