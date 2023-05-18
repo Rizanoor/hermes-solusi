@@ -24,6 +24,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
     Route::delete('/cart/{id}', [App\Http\Controllers\CartController::class, 'delete'])->name('cart-delete');
 
+    Route::get('/dashboard/transactions', [App\Http\Controllers\DashboardTransactionController::class, 'index'])
+    ->name('dashboard-transaction');
+    Route::get('/dashboard/transactions/{id}', [App\Http\Controllers\DashboardTransactionController::class, 'details'])
+    ->name('dashboard-transaction-details');
+
     Route::post('/checkout', [App\Http\Controllers\CheckoutController::class, 'process'])->name('checkout');
 
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])
